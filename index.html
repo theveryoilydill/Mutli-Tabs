@@ -189,7 +189,7 @@
 <div class="overlay" id="startup-overlay">
   <div class="overlay-box">
     <h3>&#128190; Choose a save file</h3>
-    <p>TabForge can read and write your cookies to a local JSON file using Chrome's <em>"Let site modify file"</em> permission.<br>Pick an existing file to load, create a new one, or skip to continue without a save file.</p>
+    <p>Multi-Frames can read and write your cookies to a local JSON file using Chrome's <em>"Let site modify file"</em> permission.<br>Pick an existing file to load, create a new one, or skip to continue without a save file.</p>
     <div class="btn-row">
       <button class="big-btn primary" onclick="startupPickFile()">
         <span class="btn-icon">&#128194;</span>
@@ -318,13 +318,13 @@ document.addEventListener('fullscreenchange', function() {
 // ── SETTINGS PERSISTENCE ───────────────────────────────────────────────────
 function loadSettings() {
   try {
-    var s = JSON.parse(localStorage.getItem('tabforge_settings') || '{}');
+    var s = JSON.parse(localStorage.getItem('multi-frames_settings') || '{}');
     if (typeof s.autosave === 'boolean') settings.autosave = s.autosave;
     if (typeof s.openInBlankOnStart === 'boolean') settings.openInBlankOnStart = s.openInBlankOnStart;
   } catch(e) {}
 }
 function saveSettings() {
-  try { localStorage.setItem('tabforge_settings', JSON.stringify({ autosave: settings.autosave, openInBlankOnStart: settings.openInBlankOnStart })); } catch(e) {}
+  try { localStorage.setItem('multi-frames_settings', JSON.stringify({ autosave: settings.autosave, openInBlankOnStart: settings.openInBlankOnStart })); } catch(e) {}
 }
 
 // ── AUTOSAVE ───────────────────────────────────────────────────────────────
@@ -350,7 +350,7 @@ async function doAutosave() {
       }
     } catch(e) {}
   }
-  try { localStorage.setItem('tabforge_cookies', json); } catch(e) {}
+  try { localStorage.setItem('multi-frames_cookies', json); } catch(e) {}
   flashAutosave();
 }
 
@@ -577,7 +577,7 @@ function buildSettingsPanel() {
       '<div class="s-row" style="flex-direction:column;">',
         '<div class="s-info">',
           '<label>Cookie file</label>',
-          '<small>Link a <code>.json</code> file on your disk. TabForge reads and writes using Chrome\'s <em>"Let site modify file"</em> permission (File System Access API).</small>',
+          '<small>Link a <code>.json</code> file on your disk. Multi-Frames reads and writes using Chrome\'s <em>"Let site modify file"</em> permission (File System Access API).</small>',
         '</div>',
         '<div class="file-row">',
           '<div class="file-display" id="cookie-file-display">No file selected</div>',
@@ -606,7 +606,7 @@ function buildSettingsPanel() {
       '<div class="s-row">',
         '<div class="s-info">',
           '<label for="tog-blank">Open in <code>about:blank</code> on startup</label>',
-          '<small>Relaunches TabForge in a clean blank tab on load and closes the original file tab. Keeps the URL bar tidy.</small>',
+          '<small>Relaunches Multi-Frames in a clean blank tab on load and closes the original file tab. Keeps the URL bar tidy.</small>',
         '</div>',
         '<label class="toggle"><input type="checkbox" id="tog-blank"><span class="toggle-track"></span></label>',
       '</div>',
@@ -680,7 +680,7 @@ function collectCookies() {
     var p = c.trim().split('='); var n = p.shift();
     return { name: n.trim(), value: p.join('='), domain: location.hostname, path: '/' };
   }) : [];
-  var stored = []; try { stored = JSON.parse(localStorage.getItem('tabforge_cookies') || '[]'); } catch(e) {}
+  var stored = []; try { stored = JSON.parse(localStorage.getItem('multi-frames_cookies') || '[]'); } catch(e) {}
   var all = stored.concat(fromDoc), seen = {};
   return all.filter(function(c) { var k = c.name + '@' + c.domain; if (seen[k]) return false; seen[k] = true; return true; });
 }
@@ -728,7 +728,7 @@ function applyCookieData(text) {
   try {
     var data = JSON.parse(text);
     if (!Array.isArray(data)) throw new Error('Expected a JSON array');
-    localStorage.setItem('tabforge_cookies', JSON.stringify(data));
+    localStorage.setItem('multi-frames_cookies', JSON.stringify(data));
     data.forEach(function(c) {
       if (c.name && c.value !== undefined) {
         var s = c.name + '=' + c.value + '; path=' + (c.path || '/');
