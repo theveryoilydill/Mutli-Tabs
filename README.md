@@ -8,7 +8,7 @@ Different ways to use it.
 ### Automatic methods
 * [Codesandbox](https://githubbox.com/theveryoilydill/Multi-Frames/)
 * [Codesandbox Direct](https://gnwfrj.csb.app/)
-* [Html Preview](http://htmlpreview.github.io/?https://github.com/Multi-Frames/blob/main/index.html)
+* [Html Preview](https://htmlpreview.github.io/?https://github.com/theveryoilydill/Multi-Frames/blob/main/index.html)
 * [Stackblitz (Might not work)](https://stackblitz.com/github/theveryoilydill/Multi-Frames)
 
 ### Manual method
