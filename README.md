@@ -12,6 +12,7 @@ Different ways to use it.
 * [Stackblitz (Might not work)](https://stackblitz.com/github/theveryoilydill/Multi-Frames)
 * [JS Fiddle (Might not be updated)](https://jsfiddle.net/TheVeryOilyDill/1dLh37c0/3/)
 * [EXPO (Might not be updated)](https://snack.expo.dev/@theveryoilydill/multi-frames?platform=web)
+* [Code.org (May not be updated, and also no about:blank fullscreen](https://studio.code.org/projects/weblab2/9c23ae40-2da4-4b96-9dc2-1dff467f61ad)
 
 ### Manual method
 Go to anywhere where you can interpret html code. Such as [W3 Schools](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_intro) or in files (some districts disable).
